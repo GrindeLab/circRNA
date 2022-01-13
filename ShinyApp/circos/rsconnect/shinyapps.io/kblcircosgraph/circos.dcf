@@ -1,0 +1,13 @@
+name: circos
+title: circos
+username:
+account: kblcircosgraph
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5415020
+bundleId: 5450997
+url: https://kblcircosgraph.shinyapps.io/circos/
+when: 1641796531.69555
+lastSyncTime: 1641796531.69556
+asMultiple: FALSE
+asStatic: FALSE
