@@ -319,7 +319,7 @@ data.T <- lapply(1:length(data.T.file),function(x){
 		  }
 		  })
 data.CN <- NULL
-data.N.file <- c("8CircRNAlabels.csv","miRNALabels.csv","mRNALabels.csv","","","","","","","")
+data.N.file <- c("8circRNAlabels.csv","mRNALabels.csv","miRNALabels.csv","","","","","","","")
 uploadtrack <- c(2,2,2,1,1,1,1,1,1,1)
 data.N <- lapply(1:10,function(x){
 			 if(uploadtrack[x] == 2 && nchar(data.N.file[x])>0){	  
@@ -377,10 +377,10 @@ tmp <- matrix(strsplit(get(paste("hltdata",k,sep="")), "\n")[[1]])
 			}
 			}
 
-pdf("ZNF609Circos.pdf", width=850/72, height=850/72)
-## svg("shinyCircos.svg", width=1200/72, height=1000/72)
-cexlabel <- 1.0
-par(mar=c(0.6,0.6,0.6,0.6), cex=cexlabel-0.1)
+pdf("ALLCircos.pdf", width=850/72, height=850/72)
+## svg("shinyCircos.svg", width=750/72, height=750/72)
+fontsize <- 1.0
+par(mar=c(0.6,0.6,0.6,0.6), cex=fontSize-0.1)
 trackChr <- "track"
 plotTypes <- "labels"
 plotTypes <- "axis"
@@ -392,8 +392,8 @@ poslabelschr <- "inner"
 heightlabelschr <- 0.06
 marginlabelschr <- 0.01
 colorChr <- c("black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black","black")
-cexlabel <- 1.5
-plotcircos.font(data.C, height=heightChr, color=colorChr, plotTypes=plotTypes, units=unitChr, rotation=rotation, gap.width=gap.width, cexLabel=cexlabel-0.1, labeltextchr=labeltextchr, poslabelschr=poslabelschr, heightlabelschr=heightlabelschr, marginlabelschr=marginlabelschr, data.CN=data.CN)
+heightChr <- 0.03
+plotcircos(data.C, height=heightChr,color=colorChr, plotTypes=plotTypes, units=unitChr, rotation=rotation, gap.width=gap.width, labeltextchr=labeltextchr, poslabelschr=poslabelschr, heightlabelschr=heightlabelschr, marginlabelschr=marginlabelschr, data.CN=data.CN)
 takindx <- 1
 typeTrack <- c("rect","rect")
 i <- 1
@@ -423,15 +423,15 @@ data.TTT <- data.T[[i]]
 	data.TTT$num <- 1:nrow(data.TTT)
 transparencyHlt <- c(1,1)
 lkmargin <- 0
-labcols <- c("lightgrey","lightgrey","lightgrey",
-             "lightgrey","lightgrey","lightgrey",
-             "red","lightgrey")
 tkborder <- "grey"
+labcols <- c("violetred1","black","midnightblue",
+             "black","black","springgreen3",
+             "red","gold4")
 columns <- c(4,5)
 takindx <- takindx+2
 heightlabels <- c(0.02,0.02)
 marginlabels <- c(0.01,0.01)
-circos.genomicLabels(data.N[[1]], labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]), side = "outside",col=labcols)
+circos.genomicLabels(data.NN, labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]),col = labcols, side = "outside")
 circos.genomicTrackPlotRegion(data.TT, ylim=c(0,1),track.height = tkheight, track.margin = c(lkmargin,tkmargin), bg.col = tkbgcol, bg.border = tkborder, panel.fun = function(region,value,...){
             circos.genomicRect(region, value, col=adjustcolor(value[[1]],alpha.f = tktransparency), border = NA, ...)	  
             })
@@ -475,36 +475,36 @@ data.TTT <- data.T[[i]]
 	data.TTT$num <- 1:nrow(data.TTT)
 transparencyHlt <- c(1,1)
 lkmargin <- 0.01
-miCol <- c("lightgrey","lightgrey","lightgrey","lightgrey",
-           "lightgrey","lightgrey","lightgrey","lightgrey",
-           "lightgrey","lightgrey","lightgrey","lightgrey",
-           "lightgrey","lightgrey","red","red")
 tkborder <- "grey"
 columns <- c(4,5)
+miCol <- c("gold4","gold4","gold4","violetred1",
+           "violetred1","purple","purple","midnightblue",
+           "midnightblue","midnightblue","midnightblue","springgreen3",
+           "springgreen3","springgreen3","red","red")
 takindx <- takindx+2
 takindx <- takindx-2
 heightlabels <- c(0.02,0.02)
 marginlabels <- c(0.01,0.01)
-circos.genomicLabels(data.N[[2]], labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]), side = "outside", col = miCol)
+circos.genomicLabels(data.N[[3]], labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]),col = miCol, side = "outside")
 circos.genomicTrackPlotRegion(data.TT, ylim=c(0,1),track.height = tkheight, track.margin = c(lkmargin,tkmargin), bg.col = tkbgcol, bg.border = tkborder, panel.fun = function(region,value,...){
             circos.genomicRect(region, value, col=adjustcolor(value[[1]],alpha.f = tktransparency), border = NA, ...)	  
             })
 heightlabels <- c(0.02,0.02)
 marginlabels <- c(0.01,0.01)
-circos.genomicLabels(data.N[[3]], labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]), side = "inside")
+circos.genomicLabels(data.N[[2]], labels.column = 4, connection_height = heightlabels[i], track.margin = c(0.01,marginlabels[i]), side = "inside")
 poslabels <- c("outer","inner")
 if(poslabels[i]=="inner"){
 			    takindx <- takindx+3
 			}else{
 			    takindx <- takindx+1
 			}
-transparencyLinks <- 1
+transparencyLinks <- 0.8
 rou <- get_most_inside_radius()
 			rou <- rou[1]
-selcolorLinks <- c("a:white","b:white","c:white","d:white",
-                   "e:white","f:white","g:white","h:white",
-                   "i:white","j:white","k:white","l:white",
-                   "m:white","n:white","o:red","p:red")
+			selcolorLinks <- c("a:gold4","b:gold4","c:gold4","d:violetred1",
+			                   "e:violetred1","f:purple","g:purple","h:midnightblue",
+			                   "i:midnightblue","j:midnightblue","k:midnightblue","l:springgreen3",
+			                   "m:springgreen3","n:springgreen3","o:red","p:red")
 data.L$num <- 1:nrow(data.L)
 				   selcolorLinks <- data.frame(id=selcolorLinks,stringsAsFactors=F)
 				   selcolorLinks$group <- gsub("\\:.*","",selcolorLinks$id)
